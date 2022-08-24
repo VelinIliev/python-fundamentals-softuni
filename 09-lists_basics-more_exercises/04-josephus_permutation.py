@@ -10,6 +10,8 @@ index = k - 1
 while len(final_list) > 0:
 
     peoples_to_remove = []
+    if index < 0:
+        break
 
     for i in range(len(final_list)):
         if i == index:
