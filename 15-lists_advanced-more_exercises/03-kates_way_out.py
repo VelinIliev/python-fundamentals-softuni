@@ -7,8 +7,8 @@ for x in range(number_of_rows):
     maze.append(row)
 
 # print(maze)
-for row in maze:
-    print(row)
+# for row in maze:
+#     print(row)
 
 current_row = 0
 current_index = 0
@@ -18,37 +18,108 @@ for n, row in enumerate(maze):
         current_row = n
         current_index = row.find("k")
 
-kate_position = [current_row, current_index]
 
-# print(kate_position)
+counter = 0
+# directions = ["top", "left", "bottom", "right"]
+direction = "top"
+counter_clockwise_moves = 0
+# counterclockwise
+while counter <= 100:
+    kate_position = [current_row, current_index]
+    # print(kate_position)
 
+    # go top
+    if direction == "top" and current_row - 1 >= 0 and maze[current_row - 1][current_index] != "#":
+        current_row = current_row - 1
+        counter_clockwise_moves += 1
+    elif direction == "top" and current_row - 1 >= 0 and maze[current_row - 1][current_index] == "#":
+        direction = "left"
+    elif direction == "top" and current_row - 1 < 0:
+        counter_clockwise_moves += 1
+        break
+    # go left
+    if direction == "left" and current_index - 1 >= 0 and maze[current_row][current_index - 1] != "#":
+        current_index = current_index - 1
+        counter_clockwise_moves += 1
+    elif direction == "left" and current_index - 1 >= 0 and maze[current_row][current_index - 1] == "#":
+        direction = "bottom"
+    elif direction == "left" and current_index - 1 < 0:
+        counter_clockwise_moves += 1
+        break
+    # go bottom
+    if direction == "bottom" and current_row + 1 <= len(maze) - 1 and maze[current_row + 1][current_index] != "#":
+        current_row = current_row + 1
+        counter_clockwise_moves += 1
+    elif direction == "bottom" and current_row + 1 <= len(maze) - 1 and maze[current_row + 1][current_index] == "#":
+        direction = "right"
+    elif direction == "bottom" and current_row + 1 > len(maze) - 1:
+        counter_clockwise_moves += 1
+        break
+    # go right
+    if direction == "right" and current_index + 1 <= number_of_rows and maze[current_row][current_index + 1] != "#":
+        current_index = current_index + 1
+        counter_clockwise_moves += 1
+    elif direction == "right" and current_index + 1 <= number_of_rows and maze[current_row][current_index + 1] == "#":
+        direction = "top"
+    elif direction == "right" and current_index + 1 > number_of_rows:
+        counter_clockwise_moves += 1
+        break
 
-def move_up(row, index):
-    if row - 1 < 0:
-        return [row, index]
-    elif maze[row - 1][index] == "#":
-        return [row, index]
-    else:
-        # kate_position = [row, index]
-        return [row - 1, index]
+    counter += 1
 
+counter = 0
+direction = "bottom"
+clockwise_moves = 0
+# clockwise
+while counter <= 100:
+    kate_position = [current_row, current_index]
+    # go bottom
+    if direction == "bottom" and current_row + 1 <= len(maze) - 1 and maze[current_row + 1][current_index] != "#":
+        current_row = current_row + 1
+        clockwise_moves += 1
+    elif direction == "bottom" and current_row + 1 <= len(maze) - 1 and maze[current_row + 1][current_index] == "#":
+        direction = "left"
+    elif direction == "bottom" and current_row + 1 > len(maze) - 1:
+        clockwise_moves += 1
+        break
+    # go left
+    if direction == "left" and current_index - 1 >= 0 and maze[current_row][current_index - 1] != "#":
+        current_index = current_index - 1
+        clockwise_moves += 1
+    elif direction == "left" and current_index - 1 >= 0 and maze[current_row][current_index - 1] == "#":
+        direction = "top"
+    elif direction == "left" and current_index - 1 < 0:
+        clockwise_moves += 1
+        break
+    # go top
+    if direction == "top" and current_row - 1 >= 0 and maze[current_row - 1][current_index] != "#":
+        current_row = current_row - 1
+        clockwise_moves += 1
+    elif direction == "top" and current_row - 1 >= 0 and maze[current_row - 1][current_index] == "#":
+        direction = "rigt"
+    elif direction == "top" and current_row - 1 < 0:
+        clockwise_moves += 1
+        break
+    # go right
+    if direction == "right" and current_index + 1 <= number_of_rows and maze[current_row][current_index + 1] != "#":
+        current_index = current_index + 1
+        clockwise_moves += 1
+    elif direction == "right" and current_index + 1 <= number_of_rows and maze[current_row][current_index + 1] == "#":
+        direction = "top"
+    elif direction == "right" and current_index + 1 > number_of_rows:
+        clockwise_moves += 1
+        break
+    counter += 1
 
-def move_down(row, index):
-    if row + 1 > number_of_rows - 1:
-        return [row, index]
-    elif maze[row + 1][index] == "#":
-        return [row, index]
-    else:
-        return [row + 1, index]
+if counter ==101:
+    print("Kate cannot get out")
+else:
+    if clockwise_moves == counter_clockwise_moves:
+        print(f'Kate got out in {counter_clockwise_moves} moves')
+    elif clockwise_moves > counter_clockwise_moves:
+        print(f'Kate got out in {clockwise_moves} moves')
+    elif counter_clockwise_moves > clockwise_moves:
+        print(f'Kate got out in {counter_clockwise_moves} moves')
 
-
-print(kate_position)
-kate_position = move_up(kate_position[0], kate_position[1])
-kate_position = move_down(kate_position[0], kate_position[1])
-print(kate_position)
-# current_row, current_index = move_down(current_row, current_index)
-# current_row, current_index = move_down(current_row, current_index)
-# current_row, current_index = move_down(current_row, current_index)
-# print(move)
 
 
