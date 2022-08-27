@@ -98,3 +98,5 @@ while True:
             print(temp_list)
 
 print(integers)
+
+# TODO: not ready
