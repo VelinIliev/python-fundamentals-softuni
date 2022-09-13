@@ -28,4 +28,4 @@ while len(final_list) > 0:
 print_result = ",".join(result)
 print(f'[{print_result}]')
 
-# TODO: not ready
+# see 04-josephus_permutation-01.py
