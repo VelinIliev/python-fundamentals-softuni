@@ -23,5 +23,3 @@ def find_closest_point(x1, y1, x2, y2):
 
 
 find_closest_point(x1, y1, x2, y2)
-
-# TODO: not ready
