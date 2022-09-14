@@ -46,5 +46,3 @@ for key, value in users.items():
         print(f'Side: {key}, Members: {len(value)}')
         for member in value:
             print(f'! {member}')
-
-# TODO: not ready
