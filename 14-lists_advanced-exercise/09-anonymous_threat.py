@@ -80,5 +80,3 @@ while True:
 final_string = " ".join(strings)
 
 print(final_string)
-
-# TODO: not ready
