@@ -51,6 +51,8 @@ for name, courses in users.items():
         max_points = total_points
         max_user = name
 
+
+
 print(f'Best candidate is {max_user} with total {max_points} points.')
 print("Ranking:")
 for key, value in sorted(users.items()):
