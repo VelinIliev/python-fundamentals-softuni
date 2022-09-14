@@ -1,24 +1,23 @@
 class Inventory:
 
-    def __init__(self, __capacity: int):
+    def __init__(self, capacity: int):
+        self._capacity = capacity
         self.items = []
-        self.__capacity = __capacity
 
     def add_item(self, item: str):
-        if len(self.items) < self.__capacity:
+        if len(self.items) < self._capacity:
             self.items.append(item)
         else:
-            print("not enough room in the inventory")
+            return "not enough room in the inventory"
 
     def get_capacity(self):
-        return self.__capacity
+        return self._capacity
 
     def __repr__(self):
-        items = ", ".join(self.items)
-        left_capacity = self.__capacity - len(self.items)
-        return f"Items: {items}.\nCapacity left: {left_capacity}"
+        items = ', '.join(self.items)
+        capacity_left = self._capacity - len(self.items)
+        return f"Items: {items}.\nCapacity left: {capacity_left}"
 
-# TODO: Not ready
 
 inventory = Inventory(2)
 inventory.add_item("potion")
