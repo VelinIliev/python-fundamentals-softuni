@@ -6,5 +6,3 @@ pattern = fr'\b{word}\b'
 matches = re.findall(pattern, text)
 
 print(len(matches))
-
-# TODO: 80/100
