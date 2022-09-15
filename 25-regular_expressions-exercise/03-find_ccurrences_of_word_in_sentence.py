@@ -1,6 +1,6 @@
 import re
 text = input().lower()
-word = input()
+word = input().lower()
 
 pattern = fr'\b{word}\b'
 matches = re.findall(pattern, text)
