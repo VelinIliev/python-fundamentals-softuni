@@ -4,19 +4,17 @@ start_search = False
 
 container = []
 
-for i in range(number_of_lines):
-    x = input()
-    if x == "(" and start_search == True:
+for _ in range(number_of_lines):
+    line = input()
+    if line == "(" and start_search is True:
         container.append("UNBALANCED")
-    elif x == "(" and start_search == False:
+    elif line == "(" and start_search is False:
         start_search = True
-    if x == ")" and start_search == True:
-        container.append("BALANCED")
+    if line == ")" and start_search is True:
         start_search = False
-    elif x == ")" and start_search == False:
+    elif line == ")" and start_search is False:
         container.append("UNBALANCED")
 
-# print(container)
 if "UNBALANCED" in container:
     print("UNBALANCED")
 else:

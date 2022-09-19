@@ -1,6 +1,6 @@
 key = int(input())
 number_of_letters = int(input())
 
-for i in range(number_of_letters):
+for _ in range(number_of_letters):
     letter = input()
-    print(chr(ord(letter) + key), end = "")
+    print(chr(ord(letter) + key), end="")

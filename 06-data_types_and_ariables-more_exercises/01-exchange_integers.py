@@ -5,9 +5,7 @@ print("Before:")
 print(f"a = {a}")
 print(f"b = {b}")
 
-c = a
-a = b
-b = c
+[a, b] = [b, a]
 
 print("After:")
 print(f"a = {a}")
