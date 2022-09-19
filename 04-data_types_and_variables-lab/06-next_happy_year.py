@@ -5,13 +5,12 @@ next_happy_year = 0
 while True:
     year += 1
     test_year = str(year)
-    year_as_list = []
-    for letter in test_year:
-        year_as_list.append(int(letter))
+    year_as_list = [letter for letter in test_year]
+
     non_repeated_digits = []
-    for i in year_as_list:
-        if i not in non_repeated_digits:
-            non_repeated_digits.append(i)
+    for digit in year_as_list:
+        if digit not in non_repeated_digits:
+            non_repeated_digits.append(digit)
     if len(non_repeated_digits) == len(year_as_list):
         next_happy_year = test_year
         break

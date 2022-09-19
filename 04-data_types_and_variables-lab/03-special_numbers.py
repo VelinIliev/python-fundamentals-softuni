@@ -1,11 +1,10 @@
 n = int(input())
 
-for num in range(1, n + 1):
-    digits = num
-    first_digit = num % 10
-    second_digit = num // 10
-
-    if first_digit + second_digit == 5 or first_digit + second_digit == 7 or first_digit + second_digit == 11:
-        print(f'{num} -> True')
+for number in range(1, n + 1):
+    first_digit = number % 10
+    second_digit = number // 10
+    sum = first_digit + second_digit
+    if sum == 5 or sum == 7 or sum == 11:
+        print(f'{number} -> True')
     else:
-        print(f'{num} -> False')
+        print(f'{number} -> False')
