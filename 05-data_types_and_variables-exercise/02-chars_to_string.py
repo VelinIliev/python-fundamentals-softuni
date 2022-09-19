@@ -1,7 +1,3 @@
-first_character = input()
-second_character = input()
-third_character = input()
-
-new_string = first_character + second_character + third_character
+new_string = input() + input() + input()
 
 print(new_string)

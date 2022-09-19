@@ -1,9 +1,9 @@
-n = int(input())
+number_of_characters = int(input())
 
-sum = 0
+sum_of_characters = 0
 
-for i in range(n):
+for _ in range(number_of_characters):
     character = input()
-    sum += ord(character)
+    sum_of_characters += ord(character)
 
-print(f'The sum equals: {sum}')
+print(f'The sum equals: {sum_of_characters}')
