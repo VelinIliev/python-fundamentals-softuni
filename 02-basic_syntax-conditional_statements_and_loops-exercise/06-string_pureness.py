@@ -1,12 +1,8 @@
-n = int(input())
+number_of_strings = int(input())
 
-for i in range(n):
+for _ in range(number_of_strings):
     string = input()
-    pure = True
-    for letter in string:
-        if letter == "," or letter == "." or letter == "_":
-            pure = False
-    if pure:
-        print(f'{string} is pure.')
-    else:
+    if "," in string or "." in string or "_" in string:
         print(f'{string} is not pure!')
+    else:
+        print(f'{string} is pure.')
