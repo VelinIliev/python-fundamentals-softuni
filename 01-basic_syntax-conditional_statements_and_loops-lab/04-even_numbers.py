@@ -1,13 +1,10 @@
-n = int(input())
+number_of_numbers = int(input())
 
-all_even = True
-
-for x in range(n):
+for _ in range(number_of_numbers):
     number = int(input())
     if number % 2 != 0:
         print(f"{number} is odd!")
         all_even = False
         break
-
-if all_even:
+else:
     print("All numbers are even.")
