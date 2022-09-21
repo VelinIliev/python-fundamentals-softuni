@@ -1,3 +1,6 @@
+# 90/100
+# see 10-winning_ticket-03.py
+
 tickets = input().split(", ")
 
 for i in range(len(tickets)):
@@ -58,4 +61,3 @@ for ticket in tickets:
     else:
         print("invalid ticket")
 
-# TODO: 90/100
