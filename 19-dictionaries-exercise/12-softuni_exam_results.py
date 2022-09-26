@@ -36,7 +36,7 @@ while True:
 print("Results:")
 for key, value in exam["students"].items():
     name = key
-    for key1, value1 in value.items():
+    for key1, value1 in value.items_to_steal():
         if value1 == True:
             break
         elif key1 == "banned":
