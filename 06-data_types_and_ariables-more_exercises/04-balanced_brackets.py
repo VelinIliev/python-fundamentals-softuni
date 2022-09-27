@@ -2,20 +2,20 @@ number_of_lines = int(input())
 
 start_search = False
 
-container = []
+is_unbalanced = False
 
 for _ in range(number_of_lines):
     line = input()
     if line == "(" and start_search is True:
-        container.append("UNBALANCED")
+        is_unbalanced = True
     elif line == "(" and start_search is False:
         start_search = True
     if line == ")" and start_search is True:
         start_search = False
     elif line == ")" and start_search is False:
-        container.append("UNBALANCED")
+        is_unbalanced = True
 
-if "UNBALANCED" in container:
+if is_unbalanced:
     print("UNBALANCED")
 else:
     print("BALANCED")
