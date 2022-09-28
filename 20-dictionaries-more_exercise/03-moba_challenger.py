@@ -1,56 +1,45 @@
-command = input()
-
 players = {}
 
-while "Season end" not in command:
-    if " -> " in command:
-        entry = command.split(" -> ")
-        player = entry[0]
-        position = entry[1]
-        skill = int(entry[2])
-        if 0 <= skill <= 1000:
-            if player not in players:
-                players[player] = {"skills": {position:skill},
-                                   'total': 0}
-            else:
-                if position in players[player]['skills'] and players[player]['skills'] [position] < skill:
-                    players[player]['skills'][position] = skill
-                else:
-                    players[player]['skills'][position] = skill
-    elif " vs " in command:
-        battle = command.split(" vs ")
-        first_player = battle[0]
-        second_player = battle[1]
-        if first_player in players and second_player in players:
-            for key, value in players[first_player]['skills'].items():
-                if key in players[second_player]['skills']:
-                    first_player_total = 0
-                    second_player_total = 0
-                    for points in players[first_player]['skills'].values():
-                        first_player_total += points
-                    for points in players[second_player]['skills'].values():
-                        second_player_total += points
-                    if first_player_total > second_player_total:
-                        players.pop(second_player)
-                    elif first_player_total < second_player_total:
-                        players.pop(first_player)
-
+while True:
     command = input()
+    if command == "Season end":
+        break
+    elif len(command.split(" -> ")) > 1:
+        command = command.split(" -> ")
+        player = command[0]
+        position = command[1]
+        skill = int(command[2])
+        if player not in players:
+            players[player] = {'total': skill, position: skill }
+        elif player in players and position not in players[player]:
+            players[player]['total'] += skill
+            players[player][position] = skill
+        elif player in players and position in players[player]:
+            if players[player][position] < skill: #
+                players[player]['total'] += skill - players[player][position]
+                players[player][position] = skill
+    elif len(command.split(" vs ")) > 1:
+        command = command.split(" vs ")
+        player1 = command[0]
+        player2 = command[1]
+        if player1 in players and player2 in players:
+            for key in players[player1].keys():
+                if key in players[player2] and key != "total":
+                    if players[player1]['total'] > players[player2]['total']:
+                        del players[player2]
+                    elif players[player2]['total'] > players[player1]['total']:
+                        del players[player1]
+                    break #
 
-for key, value in players.items():
-    total = 0
-    for points in value['skills'].values():
-        total += points
-    players[key]['total'] = total
+sorted_players = sorted(players.items(), key=lambda item: (-item[1]["total"], item[0]))
 
-sorted_players = sorted(players.items(), key=lambda item: -item[1]["total"])
-# print(sorted_players[1])
-for x in sorted_players:
-    name = x[0]
-    total = x[1]["total"]
-    print(f'{name}: {total} skill')
-    sorted_skills = sorted(players[name]["skills"].items(), key=lambda kv: (-kv[1], kv[0]))
-    for y in sorted_skills:
-        print(f'- {y[0]} <::> {y[1]}')
-
-# TODO not redy, and 2 more cases in this chapter
+for item in sorted_players:
+    player = item[0]
+    values = item[1]
+    sorted_values = sorted(values.items(), key=lambda kv: (-kv[1], kv[0]))
+    print(f'{player}: {players[player]["total"]} skill')
+    for value in sorted_values:
+        position = value[0]
+        skill = value[1]
+        if position != "total":
+            print(f'- {position} <::> {skill}')
