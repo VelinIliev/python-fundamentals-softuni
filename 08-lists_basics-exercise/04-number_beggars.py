@@ -1,22 +1,18 @@
-int_string = input()
+income = input().split(", ")
 count_of_beggars = int(input())
 
-income = int_string.split(", ")
-int_income = [int(x) for x in income]
+income = [int(x) for x in income]
 
 income_per_beggar = []
 
 for beggar in range(1, count_of_beggars + 1):
-    sum = 0
+    profit = 0
     next_sum = 0
-    for n, y in enumerate(int_income, 1):
-        if n == beggar:
-            sum += y
+    for n, money in enumerate(income, 1):
+        if n == beggar or next_sum == n:
+            profit += money
             next_sum = n + count_of_beggars
-        if next_sum == n:
-            sum += y
-            next_sum = n + count_of_beggars
-    income_per_beggar.append(sum)
+    income_per_beggar.append(profit)
 
 print(income_per_beggar)
 
