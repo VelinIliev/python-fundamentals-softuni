@@ -1,5 +1,4 @@
-string = input()
-gifts = string.split(" ")
+gifts = input().split(" ")
 
 while True:
     command = input()
@@ -21,5 +20,4 @@ while True:
         gifts[-1] = new_command[1]
 
 new_gifts = [gift for gift in gifts if gift is not None]
-final_gifts = " ".join(new_gifts)
-print(final_gifts)
+print(" ".join(new_gifts))
