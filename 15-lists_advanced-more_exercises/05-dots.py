@@ -7,3 +7,5 @@ for row in range(number_of_rows):
     matrix.append(row)
 
 print(matrix)
+
+# TODO not ready

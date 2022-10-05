@@ -122,4 +122,4 @@ else:
         print(f'Kate got out in {counter_clockwise_moves} moves')
 
 
-
+# TODO: not ready
