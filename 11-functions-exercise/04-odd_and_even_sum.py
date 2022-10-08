@@ -7,7 +7,7 @@ def odd_even_sum(number):
     for digit in number:
         digit = int(digit)
         if digit % 2 == 0:
-             sum_even += digit
+            sum_even += digit
         else:
             sum_odd += digit
 
