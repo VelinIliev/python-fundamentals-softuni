@@ -1,3 +1,5 @@
+# simplified version in 05_dots_01.py
+
 number_of_rows = int(input())
 
 matrix = []
@@ -161,4 +163,3 @@ for x in range(len(matrix)):
                 max_count = current_counter
 print(max_count)
 
-# TODO: it works but needs to be simplified
