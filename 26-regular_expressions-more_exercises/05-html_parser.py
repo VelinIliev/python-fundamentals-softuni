@@ -15,3 +15,5 @@ content = re.sub(tabs, "", content)
 
 print(f'Title: {title}')
 print(f'Content: {content}')
+
+# TODO: Not ready
