@@ -1,8 +1,4 @@
-integers = input()
-
-integers = integers.split(" ")
-integers = [int(number) for number in integers]
-
+list = [int(number) for number in input().split(" ")]
 
 while True:
     command = input()
@@ -10,91 +6,81 @@ while True:
         break
     else:
         command = command.split(" ")
-        # print(command)
     if command[0] == "exchange":
-        manipulation = command[0]
         index = int(command[1])
-        if index < 0 or index > len(integers) - 1:
+        if index > len(list) - 1 or index < 0:
             print("Invalid index")
         else:
-            new_integers = []
             for i in range(index + 1):
-
-                new_integers.append(integers.pop(0))
-            for i in range(len(new_integers)):
-                integers.append(new_integers.pop(0))
+                x = list.pop(0)
+                list.append(x)
     elif command[0] == "max":
-        odd_or_even = command[1]
-        max_n = -1000000000
-        max_index = -1
-
-        for index, number in enumerate(integers):
-            if odd_or_even == "even":
-                if number % 2 == 0 and number > max_n:
-                    max_n = number
+        max_type = command[1]
+        max_index = 0
+        max_number = -1
+        if command[1] == "odd":
+            for index, number in enumerate(list):
+                if number % 2 != 0 and number >= max_number:
                     max_index = index
-            elif number % 2 != 0 and number > max_n:
-                max_n = number
-                max_index = index
-        if max_index > -1:
+                    max_number = number
+        elif command[1] == "even":
+            for index, number in enumerate(list):
+                if number % 2 == 0 and number >= max_number:
+                    max_index = index
+                    max_number = number
+        if max_number < 0:
+            print("No matches")
+        else:
             print(max_index)
-        else:
-            print("No matches")
     elif command[0] == "min":
-        odd_or_even = command[1]
-        min_n = 1000000000
-        min_index = -1
-
-        for index, number in enumerate(integers):
-            if odd_or_even == "even":
-                if number % 2 == 0 and number < min_n:
-                    min_n = number
+        min_type = command[1]
+        min_index = 0
+        min_number = 1001
+        if command[1] == "odd":
+            for index, number in enumerate(list):
+                if number % 2 != 0 and number <= min_number:
                     min_index = index
-            elif number % 2 != 0 and number < min_n:
-                min_n = number
-                min_index = index
-        if min_index > -1:
-            print(min_index)
-        else:
+                    min_number = number
+        elif command[1] == "even":
+            for index, number in enumerate(list):
+                if number % 2 == 0 and number <= min_number:
+                    min_index = index
+                    min_number = number
+        if min_number > 1000:
             print("No matches")
+        else:
+            print(min_index)
     elif command[0] == "first":
         count = int(command[1])
-        odd_or_even = command[2]
-        invalid = False
-        temp_list = []
-        if count > len(integers):
-            invalid = True
-        elif odd_or_even == "even":
-            for number in integers:
-                if number % 2 == 0 and len(temp_list) < count:
-                    temp_list.append(number)
-        elif odd_or_even == "odd":
-            for number in integers:
-                if number % 2 != 0 and len(temp_list) < count:
-                    temp_list.append(number)
-        if invalid:
+        if count > len(list):
             print("Invalid count")
         else:
-            print(temp_list)
+            type_of = command[2]
+            first_list = []
+            if type_of == "even":
+                for number in list:
+                    if number % 2 == 0:
+                        first_list.append(number)
+            elif type_of == "odd":
+                for number in list:
+                    if number % 2 != 0:
+                        first_list.append(number)
+            print(first_list[:count:])
     elif command[0] == "last":
         count = int(command[1])
-        odd_or_even = command[2]
-        invalid = False
-        temp_list = []
-        reversed_list = integers[::-1]
-        if count > len(integers):
-            invalid = True
-        elif odd_or_even == "even":
-            for number in reversed_list:
-                if number % 2 == 0 and len(temp_list) < count:
-                    temp_list.append(number)
-        elif odd_or_even == "odd":
-            for number in reversed_list:
-                if number % 2 != 0 and len(temp_list) < count:
-                    temp_list.append(number)
-        if invalid:
+        if count > len(list):
             print("Invalid count")
         else:
-            print(temp_list)
+            type_of = command[2]
+            last_list = []
+            if type_of == "even":
+                for number in list:
+                    if number % 2 == 0:
+                        last_list.append(number)
+            elif type_of == "odd":
+                for number in list:
+                    if number % 2 != 0:
+                        last_list.append(number)
+            print(last_list[-count:])
 
-print(integers)
+print(list)

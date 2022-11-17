@@ -1,6 +1,4 @@
-times_as_str = input()
-times_str = times_as_str.split(" ")
-times = [int(time) for time in times_str]
+times = [int(time) for time in input().split()]
 
 left_racer_time = 0
 
@@ -17,8 +15,6 @@ for i in range(1, int(len(times) / 2) + 1):
         right_racer_time *= .8
     else:
         right_racer_time += times[i * -1]
-    # print(times[i*-1], i*-1)
-    # print(i)
 
 if left_racer_time < right_racer_time:
     print(f'The winner is left with total time: {left_racer_time:.1f}')
