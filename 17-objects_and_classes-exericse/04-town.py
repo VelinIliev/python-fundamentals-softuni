@@ -1,17 +1,17 @@
 class Town:
     def __init__(self, name: str):
-        name = name
-        latitude = ""
-        longitude = ""
+        self.name = name
+        self.latitude = ""
+        self.longitude = ""
 
     def set_latitude(self, latitude):
-        latitude = latitude
+        self.latitude = latitude
 
     def set_longitude(self, longitude):
-        longitude = longitude
+        self.longitude = longitude
 
     def __repr__(self):
-        return f'Town: {name} | Latitude: {latitude} | Longitude: {longitude}'
+        return f'Town: {self.name} | Latitude: {self.latitude} | Longitude: {self.longitude}'
 
 town = Town("Sofia")
 town.set_latitude("42° 41\' 51.04\" N")
