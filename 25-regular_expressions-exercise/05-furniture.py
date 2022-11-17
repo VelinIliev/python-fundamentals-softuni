@@ -9,7 +9,6 @@ grand_total = 0
 while command != "Purchase":
     matches = re.findall(pattern, command)
     if len(matches) > 0 and len(matches[0]) == 3:
-        # print(matches)
         product = matches[0][0]
         products.append(product)
         price = float(matches[0][1])
