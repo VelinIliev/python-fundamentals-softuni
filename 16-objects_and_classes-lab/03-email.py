@@ -1,15 +1,15 @@
 class Email:
     def __init__(self, sender, receiver, content):
-        sender = sender
-        receiver = receiver
-        content = content
-        is_sent = False
+        self.sender = sender
+        self.receiver = receiver
+        self.content = content
+        self.is_sent = False
 
     def send(self):
-        is_sent = True
+        self.is_sent = True
 
     def get_info(self):
-        return f"{sender} says to {receiver}: {content}. Sent: {is_sent}"
+        return f"{self.sender} says to {self.receiver}: {self.content}. Sent: {self.is_sent}"
 
 
 emails = []
@@ -17,11 +17,9 @@ emails = []
 while True:
     command = input()
     if command == "Stop":
-        send_emails = input()
-        send_emails = send_emails.split(", ")
-        send_emails = [int(index) for index in send_emails]
-        for x in send_emails:
-            emails[x].send()
+        send_emails = [int(index) for index in input().split(", ")]
+        for i in send_emails:
+            emails[i].send()
         break
     else:
         command = command.split(" ")

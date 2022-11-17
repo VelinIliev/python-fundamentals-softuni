@@ -1,6 +1,6 @@
 class Party:
     def __init__(self):
-        people = []
+        self.people = []
 
 
 party = Party()
