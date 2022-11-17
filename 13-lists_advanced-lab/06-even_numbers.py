@@ -1,6 +1,4 @@
-string_with_numbers = input()
-numbers = string_with_numbers.split(", ")
-numbers = [int(number) for number in numbers]
+numbers = [int(number) for number in input().split(", ")]
 
 indexes_of_even_numbers = []
 for index, number in enumerate(numbers):
