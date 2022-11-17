@@ -1,63 +1,33 @@
-# 90/100
-# see 10-winning_ticket-03.py
-
 tickets = input().split(", ")
 
-for i in range(len(tickets)):
-    tickets[i] = tickets[i].replace(" ", "")
-
-winning_symbols = ["$", "@", "#", "^"]
+winning_symbols = ["@", "#", "$", "^"]
 
 for ticket in tickets:
-
-    max_counter_left = 0
-    max_counter_right = 0
-    winning_symbol = []
+    ticket = ticket.replace(" ", "")
+    winning_ticket = False
+    jackpot_found = False
+    winning_symbol = ""
+    max_count = 6
 
     if len(ticket) == 20:
-        first_half = ticket[0:10:1]
-        second_half = ticket[10:21:1]
-        current_counter_left = 0
-        current_counter_right = 0
+        first_half = ticket[:10]
+        second_half = ticket[10:]
+        for symbol in winning_symbols:
+            if symbol * 10 in first_half and symbol * 10 in second_half:
+                jackpot_found = True
+                winning_symbol = symbol
+            elif symbol * 6 in first_half and symbol * 6 in second_half:
+                winning_ticket = True
+                winning_symbol = symbol
+                for i in range(7, 10):
+                    if symbol * i in first_half and symbol * i in second_half:
+                        max_count = i
 
-        for i in range(len(first_half)):
-            if first_half[i] in winning_symbols:
-                current_counter_left += 1
-                winning_symbol.append(first_half[i])
-            if i < len(first_half) - 1:
-                if first_half[i + 1] not in winning_symbols:
-                    if current_counter_left > max_counter_left:
-                        max_counter_left = current_counter_left
-                        current_counter_left = 0
-            else:
-                if first_half[i - 1] in winning_symbols:
-                    if current_counter_left > max_counter_left:
-                        max_counter_left = current_counter_left
-
-        for i in range(len(second_half)):
-            if second_half[i] in winning_symbols:
-                current_counter_right += 1
-            if i < len(second_half) - 1:
-                if second_half[i + 1] not in winning_symbols:
-                    if current_counter_right > max_counter_right:
-                        max_counter_right = current_counter_right
-                        current_counter_right = 0
-            else:
-                if second_half[i - 1] in winning_symbols:
-                    if current_counter_right > max_counter_right:
-                        max_counter_right = current_counter_right
-
-        winning_symbol = (max(set(winning_symbols), key=winning_symbol.count))
-
-        if max_counter_right >= 6 and max_counter_left >= 6:
-            if max_counter_left == 10 and max_counter_right == 10:
-                print(f'ticket "{ticket}" - {max_counter_left}{winning_symbol} Jackpot!')
-            elif max_counter_left < max_counter_right or max_counter_left == max_counter_right:
-                print(f'ticket "{ticket}" - {max_counter_left}{winning_symbol}')
-            elif max_counter_left > max_counter_right:
-                print(f'ticket "{ticket}" - {max_counter_right}{winning_symbol}')
+        if winning_ticket:
+            print(f'ticket "{ticket}" - {max_count}{winning_symbol}')
+        elif jackpot_found:
+            print(f'ticket "{ticket}" - 10{winning_symbol} Jackpot!')
         else:
             print(f'ticket "{ticket}" - no match')
     else:
         print("invalid ticket")
-
