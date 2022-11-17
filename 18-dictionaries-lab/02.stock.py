@@ -12,7 +12,6 @@ for i in range(len(string)):
 
 for product in products_to_search:
     if product in stock:
-        # print(stock[product])
         print(f'We have {stock[product]} of {product} left')
     else:
         print(f"Sorry, we don't have {product}")
