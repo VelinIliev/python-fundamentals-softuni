@@ -52,12 +52,11 @@ for name, courses in users.items():
         max_user = name
 
 
-
 print(f'Best candidate is {max_user} with total {max_points} points.')
 print("Ranking:")
 for key, value in sorted(users.items()):
     print(key)
-    sorted_values = sorted(value.items_to_steal(), key=lambda kv: kv[1], reverse=True)
+    sorted_values = sorted(value.items(), key=lambda kv: kv[1], reverse=True)
     for x in sorted_values:
         print(f'#  {x[0]} -> {x[1]}')
 

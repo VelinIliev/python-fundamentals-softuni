@@ -1,8 +1,8 @@
 class Comment:
     def __init__(self, username, content, likes=0):
-        self.username = username
-        self.content = content
-        self.likes = likes
+        username = username
+        content = content
+        likes = likes
 
 
 comment = Comment("user1", "I like this book")
