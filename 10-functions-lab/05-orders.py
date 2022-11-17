@@ -14,4 +14,5 @@ def calculate_order(product, quantity):
         order = 2 * quantity
     return f'{order:.2f}'
 
+
 print(calculate_order(product, quantity))

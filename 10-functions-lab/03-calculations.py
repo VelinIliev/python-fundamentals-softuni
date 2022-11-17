@@ -2,6 +2,7 @@ operator = input()
 first_number = int(input())
 second_number = int(input())
 
+
 def calculator(first_number, second_number, operator):
     result = 0
     if operator == "multiply":
@@ -12,7 +13,7 @@ def calculator(first_number, second_number, operator):
         result = first_number + second_number
     elif operator == "subtract":
         result = first_number - second_number
-
     return result
+
 
 print(calculator(first_number, second_number, operator))
