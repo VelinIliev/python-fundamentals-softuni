@@ -1,5 +1,4 @@
-key = input().split(" ")
-key = [int(number) for number in key]
+key = [int(number) for number in input().split(" ")]
 
 command = input()
 
@@ -14,7 +13,6 @@ while command != "find":
             j = 0
         new_string += new_letter
 
-    # print(new_string)
     secret_message = ""
     type_found = False
     coordinates_found = False
@@ -25,7 +23,6 @@ while command != "find":
     for x in range(len(new_string)):
         if new_string[x] == "&" and count == 1:
             type_found = False
-            # count = 0
         if type_found:
             type += new_string[x]
         if new_string[x] == "&" and count == 0:
