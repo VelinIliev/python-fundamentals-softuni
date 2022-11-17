@@ -1,165 +1,45 @@
-# simplified version in 05_dots_01.py
-
-number_of_rows = int(input())
+size = int(input())
 
 matrix = []
+directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]
 
-for _ in range(number_of_rows):
+for row in range(size):
     new_row = input().split()
     matrix.append(new_row)
 
+boundaries_row = range(0, len(matrix))
+boundaries_col = range(0, len(matrix[0]))
 
-def count_dots(x, y):
+max_dots_count = 0
+
+
+def check_connections(row, col):
     counter = 0
-    points_to_check = [[x, y]]
+    points_to_check = [[row, col]]
     while points_to_check:
-        row, column = points_to_check.pop(0)
-        if 0 < row < len(matrix) - 1 and 0 < column < len(matrix[0]) - 1:
-            found_connection = False
-            if matrix[row][column] == ".":
-                counter += 1
-            if matrix[row][column - 1] == ".":
-                found_connection = True
-                points_to_check.append([row, column - 1])
-            if matrix[row][column + 1] == ".":
-                found_connection = True
-                points_to_check.append([row, column + 1])
-            if matrix[row + 1][column] == ".":
-                found_connection = True
-                points_to_check.append([row + 1, column])
-            if matrix[row - 1][column] == ".":
-                found_connection = True
-                points_to_check.append([row - 1, column])
-            if found_connection:
-                matrix[row][column] = "c"
-            elif matrix[row - 1][column] == "c" or matrix[row + 1][column] == "c" \
-                    or matrix[row][column - 1] == "c" or matrix[row][column + 1] == "c":
-                matrix[row][column] = "c"
-            else:
-                matrix[row][column] = "-"
-        elif row == 0 and 0 < column < len(matrix[0]) - 1:
-            found_connection = False
-            if matrix[row][column] == ".":
-                counter += 1
-            if matrix[row][column - 1] == ".":
-                found_connection = True
-                points_to_check.append([row, column - 1])
-            if matrix[row][column + 1] == ".":
-                found_connection = True
-                points_to_check.append([row, column + 1])
-            if matrix[row + 1][column] == ".":
-                found_connection = True
-                points_to_check.append([row + 1, column])
-            if found_connection:
-                matrix[row][column] = "c"
-            elif matrix[row + 1][column] == "c" \
-                    or matrix[row][column - 1] == "c" or matrix[row][column + 1] == "c":
-                matrix[row][column] = "c"
-            else:
-                matrix[row][column] = "-"
-        elif row == 0 and column == 0:
-            found_connection = False
-            if matrix[row][column] == ".":
-                counter += 1
-            if matrix[row][column + 1] == ".":
-                found_connection = True
-                points_to_check.append([row, column + 1])
-            if matrix[row + 1][column] == ".":
-                found_connection = True
-                points_to_check.append([row + 1, column])
-            if found_connection:
-                matrix[row][column] = "c"
-            elif matrix[row + 1][column] == "c" or matrix[row][column + 1] == "c":
-                matrix[row][column] = "c"
-            else:
-                matrix[row][column] = "-"
-        elif column == 0 and 0 < row < len(matrix) - 1:
-            found_connection = False
-            if matrix[row][column] == ".":
-                counter += 1
-            if matrix[row][column + 1] == ".":
-                found_connection = True
-                points_to_check.append([row, column + 1])
-            if matrix[row + 1][column] == ".":
-                found_connection = True
-                points_to_check.append([row + 1, column])
-            if matrix[row - 1][column] == ".":
-                found_connection = True
-                points_to_check.append([row - 1, column])
-            if found_connection:
-                matrix[row][column] = "c"
-            elif matrix[row - 1][column] == "c" or matrix[row + 1][column] == "c" \
-                    or matrix[row][column + 1] == "c":
-                matrix[row][column] = "c"
-            else:
-                matrix[row][column] = "-"
-        if 0 < row < len(matrix) - 1 and column > 0 and column == len(matrix[0]) - 1:
-            found_connection = False
-            if matrix[row][column] == ".":
-                counter += 1
-            if matrix[row][column - 1] == ".":
-                found_connection = True
-                points_to_check.append([row, column - 1])
-            if matrix[row + 1][column] == ".":
-                found_connection = True
-                points_to_check.append([row + 1, column])
-            if matrix[row - 1][column] == ".":
-                found_connection = True
-                points_to_check.append([row - 1, column])
-            if found_connection:
-                matrix[row][column] = "c"
-            elif matrix[row - 1][column] == "c" or matrix[row + 1][column] == "c" \
-                    or matrix[row][column - 1] == "c":
-                matrix[row][column] = "c"
-            else:
-                matrix[row][column] = "-"
-        elif row == 0 and column == len(matrix[0]) - 1:
-            found_connection = False
-            if matrix[row][column] == ".":
-                counter += 1
-            if matrix[row][column - 1] == ".":
-                found_connection = True
-                points_to_check.append([row, column - 1])
-            if matrix[row + 1][column] == ".":
-                found_connection = True
-                points_to_check.append([row + 1, column])
-            if found_connection:
-                matrix[row][column] = "c"
-            elif matrix[row + 1][column] == "c" \
-                    or matrix[row][column - 1] == "c":
-                matrix[row][column] = "c"
-            else:
-                matrix[row][column] = "-"
-        elif row > 0 and column > 0 and row == len(matrix) - 1 and column < len(matrix[0]) - 1:
-            found_connection = False
-            if matrix[row][column] == ".":
-                counter += 1
-            if matrix[row][column - 1] == ".":
-                found_connection = True
-                points_to_check.append([row, column - 1])
-            if matrix[row][column + 1] == ".":
-                found_connection = True
-                points_to_check.append([row, column + 1])
-            if matrix[row - 1][column] == ".":
-                found_connection = True
-                points_to_check.append([row - 1, column])
-            if found_connection:
-                matrix[row][column] = "c"
-            elif matrix[row - 1][column] == "c" \
-                    or matrix[row][column - 1] == "c" or matrix[row][column + 1] == "c":
-                matrix[row][column] = "c"
-            else:
-                matrix[row][column] = "-"
+        new_row, new_col = points_to_check.pop(0)
+        found_connection = False
+        for direction in directions:
+            check_row = new_row + direction[0]
+            check_col = new_col + direction[1]
+            if check_row in boundaries_row and check_col in boundaries_col:
+                if matrix[check_row][check_col] == ".":
+                    found_connection = True
+                    points_to_check.append([check_row, check_col])
+                elif matrix[check_row][check_col] == "c":
+                    found_connection = True
+        if matrix[new_row][new_col] == "." and found_connection:
+            counter += 1
+            matrix[new_row][new_col] = "c"
     return counter
 
 
-max_count = 0
+for row in range(len(matrix)):
+    for col in range(len(matrix[0])):
+        if matrix[row][col] == ".":
+            count = check_connections(row, col)
+            if count > max_dots_count:
+                max_dots_count = count
+print(max_dots_count)
 
-for x in range(len(matrix)):
-    for y in range(len(matrix[0])):
-        if matrix[x][y] == ".":
-            current_counter = count_dots(x, y)
-            if current_counter > max_count:
-                max_count = current_counter
-print(max_count)
 
