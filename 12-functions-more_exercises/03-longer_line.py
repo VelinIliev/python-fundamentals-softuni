@@ -25,14 +25,16 @@ def find_longer_line(x1, y1, x2, y2, x3, y3, x4, y4):
     if first_distance > second_distance or first_distance == second_distance:
         first_distance_to_center = find_distance_to_center(x1, y1)
         second_distance_to_center = find_distance_to_center(x2, y2)
-        if first_distance_to_center < second_distance_to_center or first_distance_to_center == second_distance_to_center:
+        if first_distance_to_center < second_distance_to_center or \
+                first_distance_to_center == second_distance_to_center:
             print(f'({int(x1)}, {int(y1)})({int(x2)}, {int(y2)})')
         else:
             print(f'({int(x2)}, {int(y2)})({int(x1)}, {int(y1)})')
     else:
         first_distance_to_center = find_distance_to_center(x3, y3)
         second_distance_to_center = find_distance_to_center(x4, y4)
-        if first_distance_to_center < second_distance_to_center or first_distance_to_center == second_distance_to_center:
+        if first_distance_to_center < second_distance_to_center or \
+                first_distance_to_center == second_distance_to_center:
             print(f'({int(x3)}, {int(y3)})({int(x4)}, {int(y4)})')
         else:
             print(f'({int(x4)}, {int(y4)})({int(x3)}, {int(y3)})')
