@@ -1,8 +1,5 @@
-sequence = input()
-sequence = sequence.split(" ")
-sequence = [int(number) for number in sequence]
+sequence = [int(number) for number in input().split()]
 
-# print(sequence)
 removed_sum = 0
 
 while len(sequence) > 0:

@@ -16,7 +16,7 @@ while True:
     elif command[0] == "Insert":
         lesson_title = command[1]
         index = int(command[2])
-        if len(schedule_of_lessons) - 1 >= index > 0:
+        if len(schedule_of_lessons) - 1 >= index >= 0:
             if lesson_title not in schedule_of_lessons:
                 schedule_of_lessons.insert(index, lesson_title)
 

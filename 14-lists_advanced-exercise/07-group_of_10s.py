@@ -1,9 +1,6 @@
 from math import ceil
 
-numbers = input()
-
-numbers = numbers.split(", ")
-numbers = [int(number) for number in numbers]
+numbers = [int(number) for number in input().split(", ")]
 
 max_n = max(numbers)
 

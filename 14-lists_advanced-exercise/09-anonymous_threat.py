@@ -1,82 +1,33 @@
-strings = input()
-
-strings = strings.split(" ")
+strings = input().split(" ")
 
 while True:
-    command = input()
-
-    if command == "3:1":
+    command = input().split(" ")
+    if command[0] == "3:1":
         break
-    else:
-        command = command.split(" ")
-
-    if command[0] == "merge":
-
+    elif command[0] == "merge":
         start_index = int(command[1])
-
+        end_index = int(command[2])
         if start_index < 0:
             start_index = 0
-
-        if start_index > len(strings) - 1:
-            start_index = len(strings) - 1
-
-        end_index = int(command[2])
-
-        if end_index < 0:
-            end_index = 0
-
-        if end_index > len(strings) - 1:
-            end_index = len(strings) - 1
-
-        merged_string = ""
-
-        for x in range(start_index, end_index + 1):
-            merged_string += strings[start_index]
-            del strings[start_index]
-
-        strings.insert(start_index, merged_string)
+        if start_index < end_index:
+            if end_index >= len(strings):
+                end_index = len(strings) - 1
+            for num in range(start_index, end_index):
+                strings[start_index] += f"{strings.pop(start_index + 1)}"
 
     elif command[0] == "divide":
-
         index = int(command[1])
         partitions = int(command[2])
 
-        new_partitions = []
+        divider = len(strings[index]) // partitions
+        string_to_change = strings.pop(index)
+        new_string = []
+        for x in range(partitions - 1):
+            new_string.append(string_to_change[:divider])
+            string_to_change = string_to_change[divider:]
+        new_string.append(string_to_change)
+        for x in new_string[::-1]:
+            strings.insert(index, x)
 
-        if len(strings[index]) % partitions == 0:
-            new_partition = ""
+print(" ".join(strings))
 
-            for n, letter in enumerate(strings[index], start=1):
-                new_partition += letter
-                if n % (len(strings[index]) / partitions) == 0:
-                    new_partitions.append(new_partition)
-                    new_partition = ""
-
-            del strings[index]
-
-            for partition in reversed(new_partitions):
-                strings.insert(index, partition)
-
-        else:
-            new_length = int(len(strings[index]) / partitions)
-            new_partition = ""
-            end = len(strings[index]) - new_length * (partitions - 1)
-
-            for n, letter in enumerate(strings[index], start=1):
-                new_partition += letter
-
-                if n > end:
-                    if n == len(strings[index]):
-                        new_partitions.append(new_partition)
-                elif n % new_length == 0:
-                    new_partitions.append(new_partition)
-                    new_partition = ""
-
-            del strings[index]
-
-            for partition in reversed(new_partitions):
-                strings.insert(index, partition)
-
-final_string = " ".join(strings)
-
-print(final_string)
