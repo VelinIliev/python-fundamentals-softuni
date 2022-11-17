@@ -14,21 +14,12 @@ while True:
             index = int(instructions[1])
             new_string = instructions[2]
             if 0 <= index < len(destinations):
-                # for i in range(len(destinations)):
-                #     if i == index:
-                #         new_destinations += new_string
-                #     new_destinations += destinations[i]
                 new_destinations = destinations[:index:] + new_string + destinations[index::]
         elif action == "Remove":
             instructions = command[1].split(":")
             start_index = int(instructions[1])
             end_index = int(instructions[2])
             if 0 <= start_index < len(destinations) and 0 <= end_index < len(destinations):
-                # for i in range(len(destinations)):
-                #     if i in range(start_index, end_index + 1):
-                #         new_destinations += ""
-                #     else:
-                #         new_destinations += destinations[i]
                 new_destinations = destinations[:start_index] + destinations[end_index + 1::]
         elif action.startswith("Switch"):
             instructions = action.split(":")
